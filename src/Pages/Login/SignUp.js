@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider";
 import login from "./../../assets/login.svg";
 
 const SignUp = () => {
@@ -9,8 +10,17 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+ 
+  const {createUser}= useContext(AuthContext);
+
   const handleSignup = (data) => {
     console.log(data);
+    createUser(data.email, data.password)
+    .then(d => {
+        const user = d.user;
+        console.log(user);
+    })
+    .catch(e => console.log(e))
   };
   return (
     <div className="h-[800px] flex justify-center items-center ">

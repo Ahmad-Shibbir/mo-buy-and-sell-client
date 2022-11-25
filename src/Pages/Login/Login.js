@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider";
 import login from "./../../assets/login.svg";
 
 const Login = () => {
+  const {signIn} = useContext(AuthContext)
   const { register, formState: { errors }, handleSubmit } = useForm();
+  const [loginError, setLoginError]= useState('')
+
   const handleLogin = data=> {
+    setLoginError('');
     console.log(data);
+    signIn(data.email, data.password)
+    .then(d=>{
+      const user = d.user
+      console.log(user);
+    })
+    .catch(e=>{
+      console.log(e.message);
+      setLoginError(e.message);
+    })
   }
 
   return (
@@ -41,6 +55,9 @@ const Login = () => {
               {/* {" "} */}
                 
               <label className="block">forget password?</label>
+              </div>
+              <div>
+                {loginError && <p>{loginError}</p>}
               </div>
              
               {/* <input {...register("firstName")} placeholder="First name" /> */}
