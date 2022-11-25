@@ -61,7 +61,7 @@ const Login = () => {
               <p>{data}</p> */}
               <div>
               <input className="btn btn-primary w-1/2" value='Login' type="submit" />
-              <label className="block">New to this site? <Link to='/' className="text-primary">Create New Account</Link></label>
+              <label className="block">New to this site? <Link to='/signup' className="text-primary">Create New Account</Link></label>
               </div>
               <input className="btn btn-outline w-1/2" value='Login with Google' type="submit" />
               <br />
