@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import login from "./../../assets/login.svg";
@@ -11,16 +12,31 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
  
-  const {createUser}= useContext(AuthContext);
+  const {createUser, updateUser}= useContext(AuthContext);
+  const [signupError, setSignUpError]= useState('');
 
   const handleSignup = (data) => {
+    setSignUpError('');
     console.log(data);
     createUser(data.email, data.password)
     .then(d => {
         const user = d.user;
         console.log(user);
+        toast('User Created Successfully!')
+        const userInfo ={
+            displayNmae: data.name
+        }
+        updateUser(userInfo)
+        .then(()=>{})
+        .catch(e=>{
+            console.log(e)
+            // setSignUpError(e.message);
+        })
     })
-    .catch(e => console.log(e))
+    .catch(e => {
+        console.log(e)
+        setSignUpError(e.message);
+    })
   };
   return (
     <div className="h-[800px] flex justify-center items-center ">
@@ -90,7 +106,7 @@ const SignUp = () => {
               {/* <input {...register("firstName")} placeholder="First name" /> */}
               <select {...register("userType", { required: "Password select an option",})} className="select select-success w-full max-w-xs">
                
-                <option value="">Are you buyer or seller</option>
+                <option value="">Do you want to buy or sell</option>
                 <option value="buyer">Buyer</option>
                 <option value="seller">Seller</option>                
               </select>
@@ -109,9 +125,12 @@ const SignUp = () => {
               <div>
                 <input
                   className="btn btn-primary w-1/2"
-                  value="Login"
+                  value="SignUp"
                   type="submit"
                 />
+                <div>
+                    {signupError&& <p className="text-accent">{signupError}</p> }
+                </div>
                 <label className="block">
                   Already Have an Account?{" "}
                   <Link to="/login" className="text-primary">
