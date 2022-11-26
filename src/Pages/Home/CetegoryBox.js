@@ -13,7 +13,7 @@ const CetegoryBox = () => {
           />
         </figure>
         <div className="card-body items-center text-center">
-          <Link to="/" className="card-actions">
+          <Link to="/products" className="card-actions">
             <button className="btn btn-primary">Samsung</button>
           </Link>
         </div>
