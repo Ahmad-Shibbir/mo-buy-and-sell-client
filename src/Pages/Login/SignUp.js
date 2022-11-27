@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
+import useToken from "../../hooks/useToken";
 import login from "./../../assets/login.svg";
 
 const SignUp = () => {
@@ -14,7 +15,13 @@ const SignUp = () => {
  
   const {createUser, updateUser}= useContext(AuthContext);
   const [signupError, setSignUpError]= useState('');
+  const [createdUserEmail, setCreatedUserEmail] = useState('')
+  const [token] = useToken(createdUserEmail)
+  const navigate = useNavigate();
 
+  if(token){
+    navigate('/');
+  }
   const handleSignup = (data) => {
     setSignUpError('');
     console.log(data);
@@ -27,7 +34,9 @@ const SignUp = () => {
             displayNmae: data.name
         }
         updateUser(userInfo)
-        .then(()=>{})
+        .then(()=>{
+          saveUser(data.name, data.email, data.userType)
+        })
         .catch(e=>{
             console.log(e)
             // setSignUpError(e.message);
@@ -37,7 +46,38 @@ const SignUp = () => {
         console.log(e)
         setSignUpError(e.message);
     })
+
+    }
+    
+    const saveUser = (name, email, user_type)=>{
+      const user = {name, email,user_type};
+      fetch('http://localhost:5000/users',{
+        method:'POST',
+        headers:{
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      })
+      .then(res => res.json())
+      .then(d=>{
+        console.log(d);
+        setCreatedUserEmail(email)
+      });
+
   };
+
+// const getUserToken = email =>{
+//     fetch(`http://localhost:5000/jwt?email=${email}`)
+//     .then(res=>res.json())
+//     .then(d=>{
+//       if(d.accessToken){
+//         localStorage.setItem('accessToken', d.accessToken);
+//         // Navigate('/');
+
+//       }
+//     })
+// }
+
   return (
     <div className="h-[800px] flex justify-center items-center ">
       <div className="  card grid lg:grid-cols-2 m-6 p-12 bg-base-100 shadow-xl">
