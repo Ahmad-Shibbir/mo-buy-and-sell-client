@@ -25,6 +25,7 @@ const DashboardNav = () => {
             {
                 isSeller && <>
                 <Link to='/dashboard/my-products'><button className='btn btn-primary'>All products for seller</button></Link>
+                <Link to='/dashboard/add-product'><button className='btn btn-primary'>Add product for seller</button></Link>
                 </>
             }
             
