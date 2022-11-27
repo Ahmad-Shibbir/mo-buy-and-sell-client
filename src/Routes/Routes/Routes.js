@@ -4,12 +4,15 @@ import Main from "../../Layout/Main";
 import AllUsers from "../../Pages/Dashboard/AllUser/AllUsers";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import Myorders from "../../Pages/Dashboard/Dashboard/MyOrders/Myorders";
+import MyProducts from "../../Pages/Dashboard/SellerDashboard/MyProducts";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/Login/SignUp";
 import Products from "../../Pages/Product/Products";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 const router = createBrowserRouter([
     {
@@ -41,7 +44,15 @@ const router = createBrowserRouter([
         children:[
             {
                 path:'/dashboard',
-                element:<Myorders></Myorders>
+                element:<Dashboard></Dashboard>
+            },
+            {
+                path:'/dashboard/myorders',
+                element:<BuyerRoute><Myorders></Myorders></BuyerRoute>
+            },
+            {
+                path:'/dashboard/my-products',
+                element:<SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
             {
                 path:'/dashboard/allusers',
