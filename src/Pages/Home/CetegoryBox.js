@@ -1,51 +1,36 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router-dom";
 
 const CetegoryBox = () => {
+
+  const { data: category = [] } = useQuery({
+    queryKey: ["category"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/category");
+      const data = await res.json();
+      return data;
+    },
+  });
+
   return (
     <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-12 bg-primary ">
-      <div className="card w-96 bg-base-100 shadow-xl">
+      {category?.map(ct=><div className="card w-96 bg-base-100 shadow-xl">
         <figure className="px-10 pt-10">
           <img
-            src="https://1000logos.net/wp-content/uploads/2017/06/Samsung-Logo-2.png"
+            src={ct.category_img}
             alt="Shoes"
             className="rounded-xl"
           />
         </figure>
         <div className="card-body items-center text-center">
-          <Link to="/products" className="card-actions">
-            <button className="btn btn-primary">Samsung</button>
+          <Link to={`/products/${ct.category_id}`} className="card-actions">
+            <button className="btn btn-primary">{ct.category_name}</button>
           </Link>
         </div>
-      </div>
-      <div className="card w-96 bg-base-100 shadow-xl">
-        <figure className="px-10 pt-10">
-          <img
-            src="https://1000logos.net/wp-content/uploads/2017/02/iPhone-logo.jpg"
-            alt="Shoes"
-            className="rounded-xl"
-          />
-        </figure>
-        <div className="card-body items-center text-center">
-          <Link to="/" className="card-actions">
-            <button className="btn btn-primary">Aple</button>
-          </Link>
-        </div>
-      </div>
-      <div className="card w-96 bg-base-100 shadow-xl">
-        <figure className="px-10 pt-10">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbUsMr1p0qWqezgEDN9NJUha7mWgCbV0W7pfr8Y74qXCltdTh_oOvfXi-aYCvUPAbUvx8&usqp=CAU"
-            alt="Shoes"
-            className="rounded-xl"
-          />
-        </figure>
-        <div className="card-body items-center text-center">
-          <Link to="/" className="card-actions">
-            <button className="btn btn-primary">Xiaomi</button>
-          </Link>
-        </div>
-      </div>
+      </div>)
+      }
+     
     </div>
   );
 };

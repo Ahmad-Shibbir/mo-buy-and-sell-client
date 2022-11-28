@@ -5,7 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const AddProduct = () => {
-    const {user}=useContext(AuthContext)
+    const {user}=useContext(AuthContext);
+    // const categor = [{category_id:'1', category_name:"Samsung", category_img:"jhf"}];
    
     const {
         register,
@@ -18,6 +19,7 @@ const AddProduct = () => {
       console.log(imgHostKey);
       const handAddProduct =data=>{
         const image = data.image[0];
+        console.log(data.category.category_name);
         const formData= new FormData();
         formData.append('image', image);
         const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imgHostKey}`;
@@ -28,19 +30,22 @@ const AddProduct = () => {
         .then(res =>  res.json())
         .then(imgData=>{
             if(imgData.success){
+                const cat = data.category.split(' ');
                 
                 const product ={
                     name:data.name,
                     email:user.email,
                     img:imgData.data.url,
-                    category:data.category,
+                    category_id:cat[0],
+                    category_name:cat[1],
+                    category_img:cat[2],
                     description:data.description,
                     selling_price:data.price,
                     new_price:data.new_price,
                     location:data.location,
                     phon_no:data.phone,
                     duration:data.duration,
-                    condition:data.condition
+                    condition:data.condition,
 
                 }
                 fetch('http://localhost:5000/products',{
@@ -87,9 +92,10 @@ const AddProduct = () => {
                     <select {...register("category", { required: "Password select an option",})} className="select select-success w-full max-w-xs">
                     
                     <option value="">Select category</option>
-                    <option value="Samsung">Samsung</option>
-                    <option value="Apple">Apple</option>                
-                    <option value="Xiomi">Xiomi</option>                
+                    <option value="1 Samsung https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLJJyVcUiz7_wNA_-UgKzw26C_XB-bn7r0Zw&usqp=CAU">Samsung</option>
+                    <option value="2 Apple https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLJJyVcUiz7_wNA_-UgKzw26C_XB-bn7r0Zw&usqp=CAU">Apple</option>
+                    <option value="3 Xiomi https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLJJyVcUiz7_wNA_-UgKzw26C_XB-bn7r0Zw&usqp=CAU">Xiomi</option>
+                                  
                     </select>
                     {errors.category && (
                     <p className="text-accent" role="alert">
