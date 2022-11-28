@@ -21,7 +21,9 @@ const Myorders = () => {
       return data;
     },
   });
-
+  const handlePay=()=>{
+  alert("Your payment is successful!")
+  }
   return (
     <div>
       <h3 className="text-3xl text-center font-bold my-6 text-primary ">
@@ -51,19 +53,19 @@ const Myorders = () => {
                         <div className="avatar">
                           <div className="mask mask-squircle w-40 h-40">
                             <img
-                              src={ord.p_img}
+                              src={ord.img}
                               alt="Avatar Tailwind CSS Component"
                             />
                           </div>
                         </div>
                         <div>
-                          <div className="font-bold">{ord.p_name}</div>
-                          <div className="text-3xl text-primary font-bold">${ord.P_price}</div>
+                          <div className="font-bold">{ord.name}</div>
+                          <div className="text-3xl text-primary font-bold">${ord.price}</div>
                         </div>
                       </div>
                     </td>
                     <th>
-                      <button className="btn btn-primary btn-xs">Pyment</button>
+                      <button onClick={handlePay} className="btn btn-primary btn-xs">Pyment</button>
                     </th>
                     {/* <td>Purple</td> */}
                     

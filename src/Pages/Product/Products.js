@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider";
+import BookModal from "./BookModal";
 
 const Products = () => {
+    const [booking, setBooking]= useState(null);
   // const {name,email,img,category_id, category_name, description,selling_price,new_price,location, phon_no,duration,condition }=useLoaderData();
 
   const products = useLoaderData();
 
+
+console.log(booking);
+
+
+  
+  
+  
   return (
     <div>
       <div className="grid gap-6 my-4 px-12"> 
@@ -55,12 +66,19 @@ const Products = () => {
                     </div>
                   </div>
                 </div>
-                <button className="btn btn-primary">Book</button>
+                <label onClick={()=>setBooking(p)} className="btn btn-primary" htmlFor="my-modal-3" > Book Now!  </label>
+                {/* <button onClick={()=>handAddBooking(products)} className="btn btn-primary">Book</button> */}
               </div>
             </div>
           </div>
         ))}
       </div>
+      {
+        booking && <BookModal
+        key={booking._id}
+        booking={booking}
+        ></BookModal>
+      }
     </div>
   );
 };
