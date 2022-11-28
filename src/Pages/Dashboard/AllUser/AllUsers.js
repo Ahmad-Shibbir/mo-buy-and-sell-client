@@ -12,14 +12,21 @@ const AllUsers = () => {
   });
 
   return (
-    <div className="overflow-x-auto">
+    <div>
+    <h3 className="text-3xl text-center font-bold mt-6 text-primary ">
+        All Users Info
+      </h3>
+      <h3 className="text-xl font-bold text-center mt-2 mb-12  ">
+         In this list <span className='text-primary text-3xl'> {users.length} </span> users found 
+      </h3>
+     <div className="overflow-x-auto mx-8 mb-12">
       <table className="table table-zebra w-full">
         <thead>
           <tr>
             <th></th>
             <th>Name</th>
-            <th>Job</th>
-            <th>Favorite Color</th>
+            <th>User Type</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +41,7 @@ const AllUsers = () => {
         </tbody>
       </table>
     </div>
+   </div>
   );
 };
 

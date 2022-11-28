@@ -7,8 +7,9 @@ const DashboardLayout = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <Outlet></Outlet>
             <DashboardNav></DashboardNav>
+            <Outlet></Outlet>
+            
             
         </div>
     );
