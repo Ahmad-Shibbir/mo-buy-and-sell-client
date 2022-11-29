@@ -21,13 +21,13 @@ const DashboardNav = () => {
             }
             {
                 isBuyer && <>
-                <Link to='/dashboard/myorders'><button className='btn btn-outline '>All orders for buyer</button></Link>
+                <Link to='/dashboard/myorders'><button className='btn btn-outline '>My order list</button></Link>
                 </>
             }
             {
                 isSeller && <>
-                <Link to='/dashboard/my-products'><button className='btn btn-outline '>All products for seller</button></Link>
-                <Link to='/dashboard/add-product'><button className='btn btn-outline '>Add product for seller</button></Link>
+                <Link to='/dashboard/my-products'><button className='btn btn-outline '>My Products</button></Link>
+                <Link to='/dashboard/add-product'><button className='btn btn-outline '>Add A product</button></Link>
                 </>
             }
             
