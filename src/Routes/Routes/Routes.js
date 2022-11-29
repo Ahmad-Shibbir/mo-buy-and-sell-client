@@ -8,6 +8,7 @@ import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import Myorders from "../../Pages/Dashboard/Dashboard/MyOrders/Myorders";
 import AddProduct from "../../Pages/Dashboard/SellerDashboard/AddProduct";
 import MyProducts from "../../Pages/Dashboard/SellerDashboard/MyProducts";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/Login/SignUp";
@@ -75,7 +76,13 @@ const router = createBrowserRouter([
                 element:<AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             }
         ]
-    }
+    },
+    {
+        path:'*',
+        element:<ErrorPage></ErrorPage>
+
+       }
+    
 ])
 
 export default router;
