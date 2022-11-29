@@ -14,20 +14,7 @@ const BookModal = (booking) => {
       } = useForm();
  
     const handAddBooking =data=>{
-    //   const image = data.image[0];
-    //   console.log(data.category.category_name);
-    //   const formData= new FormData();
-    //   formData.append('image', image);
-    //   const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imgHostKey}`;
-    //   fetch(url, {
-    //       method:'POST',
-    //       body: formData
-    //   })
-    //   .then(res =>  res.json())
-    //   .then(imgData=>{
-        //   if(imgData.success){
-            //   const cat = data.category.split(' ');
-              
+    
               const product ={
                   name:booking.booking.name,
                   email:user.email,               
@@ -39,7 +26,7 @@ const BookModal = (booking) => {
                  
 
               }
-              fetch('http://localhost:5000/bookings',{
+              fetch('https://mo-buy-and-sell-server.vercel.app/bookings',{
                   method:'POST',
                   headers:{
                       'content-type': 'application/json',
@@ -61,10 +48,7 @@ const BookModal = (booking) => {
     
     
     <div>
-      {/* The button to open modal */}
-      
-
-      {/* Put this part before </body> tag */}
+     
       <input type="checkbox" id="my-modal-3" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">

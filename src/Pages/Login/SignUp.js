@@ -51,7 +51,7 @@ const SignUp = () => {
     
     const saveUser = (name, email, user_type)=>{
       const user = {name, email,user_type};
-      fetch('http://localhost:5000/users',{
+      fetch('https://mo-buy-and-sell-server.vercel.app/users',{
         method:'POST',
         headers:{
           'content-type': 'application/json'
@@ -67,7 +67,7 @@ const SignUp = () => {
   };
 
 // const getUserToken = email =>{
-//     fetch(`http://localhost:5000/jwt?email=${email}`)
+//     fetch(`https://mo-buy-and-sell.web.app/jwt?email=${email}`)
 //     .then(res=>res.json())
 //     .then(d=>{
 //       if(d.accessToken){

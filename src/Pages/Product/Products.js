@@ -61,7 +61,7 @@ console.log(booking);
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">Hart Hagerty</div>
+                      <div className="font-bold">{p.seller_name}</div>
                       <div className="text-sm opacity-50">{p.phon_no}</div>
                     </div>
                   </div>

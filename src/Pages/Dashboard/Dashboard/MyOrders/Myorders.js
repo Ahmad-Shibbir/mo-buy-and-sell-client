@@ -5,7 +5,7 @@ import { AuthContext } from "../../../../Context/AuthProvider";
 const Myorders = () => {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/order?email=${user.email}`;
+  const url = `https://mo-buy-and-sell.web.app/order?email=${user.email}`;
 
   const { data: order = [] } = useQuery({
     queryKey: ["order"],

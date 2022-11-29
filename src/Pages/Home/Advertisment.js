@@ -9,7 +9,7 @@ const Advertisment = () => {
     const { data: advertise = [] } = useQuery({
         queryKey: ["advertise"],
         queryFn: async () => {
-          const res = await fetch("http://localhost:5000/advertise");
+          const res = await fetch("https://mo-buy-and-sell-server.vercel.app/advertise");
           const data = await res.json();
           return data;
         },
@@ -35,7 +35,7 @@ const Advertisment = () => {
     { advertise.length>0 &&
           <div className="lg:mx-12 grid gap-8 my-4 px-12"> 
           <h1 className="text-3xl text-center font-bold text-primary mt-6 mb-2 ">
-             Few Good Deal For You!
+             Few Good Deals For You!
           </h1>
   
           {advertise?.map((p) => (
@@ -75,7 +75,7 @@ const Advertisment = () => {
                         </div>
                       </div>
                       <div>
-                        <div className="font-bold">Hart Hagerty</div>
+                        <div className="font-bold">{p.seller_name}</div>
                         <div className="text-sm opacity-50">{p.phon_no}</div>
                       </div>
                     </div>

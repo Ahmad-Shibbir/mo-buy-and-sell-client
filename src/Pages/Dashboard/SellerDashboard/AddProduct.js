@@ -18,24 +18,25 @@ const AddProduct = () => {
       const navigate = useNavigate();
       console.log(imgHostKey);
       const handAddProduct =data=>{
-        const image = data.image[0];
-        console.log(data.category.category_name);
-        const formData= new FormData();
-        formData.append('image', image);
-        const url = `https://api.imgbb.com/1/upload?expiration=${imgHostKey}`;
-        fetch(url, {
-            method:'POST',
-            body: formData
-        })
-        .then(res =>  res.json())
-        .then(imgData=>{
-            if(imgData.success){
+        // const image = data.image[0];
+        // console.log(data.category.category_name);
+        // const formData= new FormData();
+        // formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=${imgHostKey}`;
+        // fetch(url, {
+        //     // method:'POST',
+        //     // body: formData
+        // })
+        // .then(res =>  res.json())
+        // .then(imgData=>{
+            
                 const cat = data.category.split(' ');
                 
                 const product ={
                     name:data.name,
                     email:user.email,
-                    img:imgData.data.url,
+                    seller_name:user.displayName,
+                    img:data.image,
                     category_id:cat[0],
                     category_name:cat[1],
                     category_img:cat[2],
@@ -48,7 +49,7 @@ const AddProduct = () => {
                     condition:data.condition,
 
                 }
-                fetch('http://localhost:5000/products',{
+                fetch('https://mo-buy-and-sell-server.vercel.app/products',{
                     method:'POST',
                     headers:{
                         'content-type': 'application/json',
@@ -62,8 +63,8 @@ const AddProduct = () => {
                     toast.success(`${data.name} is added successfully`);
                     navigate('/dashboard/my-products');
                 })
-            }
-        })
+            // }
+        // )
        
 
       }
@@ -215,7 +216,7 @@ const AddProduct = () => {
                         required: "image is required",
                         })}
                         placeholder="Product image"
-                        type="file"
+                        type="text"
                         className="input input-bordered input-success w-full max-w-xs"
                     />
                     {errors.image && (
