@@ -18,8 +18,8 @@ console.log(booking);
   
   
   return (
-    <div>
-      <div className="grid gap-6 my-4 px-12"> 
+    <div className="lg:m-12">
+      <div className="lg:mx-12 grid gap-8 my-4 px-12"> 
         <h1 className="text-3xl font-bold text-primary mt-6 mb-2 ">
           {products.length} product found for {products[0].category_name}
         </h1>

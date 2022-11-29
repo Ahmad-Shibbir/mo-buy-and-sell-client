@@ -22,7 +22,7 @@ const AddProduct = () => {
         console.log(data.category.category_name);
         const formData= new FormData();
         formData.append('image', image);
-        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imgHostKey}`;
+        const url = `https://api.imgbb.com/1/upload?expiration=${imgHostKey}`;
         fetch(url, {
             method:'POST',
             body: formData

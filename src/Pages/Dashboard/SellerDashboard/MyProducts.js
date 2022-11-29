@@ -40,6 +40,42 @@ const MyProducts = () => {
       toast.success(`User ${user.name} deleted successfully!`)
     })
   }
+
+
+  const handleAdvertise = data =>{
+    const product ={
+      product_id:data._id,
+      name:data.name,
+      email:user.email,
+      img:data.img,
+      category_id:data.category_id,
+      category_name:data.category_name,
+      category_img:data.category_img,
+      description:data.description,
+      selling_price:data.price,
+      new_price:data.new_price,
+      location:data.location,
+      phon_no:data.phone,
+      duration:data.duration,
+      condition:data.condition,
+
+  }
+  fetch('http://localhost:5000/advertise',{
+      method:'POST',
+      headers:{
+          'content-type': 'application/json',
+          authorization:`bearer ${localStorage.getItem('accessToken')}`
+      },
+      body:JSON.stringify(product)
+  })
+  .then(res=> res.json())
+  .then(dat=>{
+      console.log(dat);
+      toast.success(`${data.name} is added successfully`);
+    //   navigate('/dashboard/my-products');
+  })
+
+  }
   return (
     <div>
       {
@@ -106,7 +142,7 @@ const MyProducts = () => {
                   <button onClick={()=>handleDelete(prd)} className="btn btn-accent btn-xs">Delete</button>
                 </th>
                 <th>
-                  <button className="btn btn-primary btn-xs">Advertise</button>
+                  <button onClick={()=>handleAdvertise(prd)} className="btn btn-primary btn-xs">Advertise</button>
                 </th>
 
                 {/* <td>Purple</td> */}

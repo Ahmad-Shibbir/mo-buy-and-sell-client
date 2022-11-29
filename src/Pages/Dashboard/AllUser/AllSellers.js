@@ -35,7 +35,7 @@ const AllSellers = () => {
         users?.length<1 && <>
         <div>
         <NoInfoPage
-        message={`Oops! No User Found!`}
+        message={`Oops! No Seller Found!`}
         ></NoInfoPage>
         </div>
         </> 
