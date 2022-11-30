@@ -8,14 +8,14 @@ const AllBuyers = () => {
     const { data: users = [],refetch } = useQuery({
       queryKey: ["users"],
       queryFn: async () => {
-        const res = await fetch(`https://mo-buy-and-sell-server.vercel.app/all-seller/${user_type}`);
+        const res = await fetch(`https://mo-buy-and-sell-server-ahmad-shibbir.vercel.app/all-seller/${user_type}`);
         const data = await res.json();
         return data;
       },
     });
 
     const handleDelete = user=>{    
-        fetch(`https://mo-buy-and-sell-server.vercel.app/user/${user._id}`, {
+        fetch(`https://mo-buy-and-sell-server-ahmad-shibbir.vercel.app/user/${user._id}`, {
           method:'DELETE',
           headers:{
             authorization: `bearer ${localStorage.getItem('accessToken')}`

@@ -3,7 +3,7 @@ Live Site: https://mo-buy-and-sell.web.app/
 user's credentials
 ------------------------
 adminEmail: <admin@1.com>
-adminPassword: <admin@1.com>
+adminPassword: <Admin@1>
 
 features and functionalities
 -------------------------------

@@ -6,7 +6,7 @@ import NoInfoPage from "../../Shared/NoInfoPage/NoInfoPage";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
-  const url = `https://mo-buy-and-sell-server.vercel.app/my-products?email=${user.email}`;
+  const url = `https://mo-buy-and-sell-server-ahmad-shibbir.vercel.app/my-products?email=${user.email}`;
 
   const { data: products = [],refetch } = useQuery({
     queryKey: ["products"],
@@ -27,7 +27,7 @@ const MyProducts = () => {
 
   const handleDelete = product=>{ 
     console.log(product);   
-    fetch(`https://mo-buy-and-sell-server.vercel.app/products/${product._id}`, {
+    fetch(`https://mo-buy-and-sell-server-ahmad-shibbir.vercel.app/products/${product._id}`, {
       method:'DELETE',
       headers:{
         authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -60,7 +60,7 @@ const MyProducts = () => {
       condition:data.condition,
 
   }
-  fetch('https://mo-buy-and-sell-server.vercel.app/advertise',{
+  fetch('https://mo-buy-and-sell-server-ahmad-shibbir.vercel.app/advertise',{
       method:'POST',
       headers:{
           'content-type': 'application/json',

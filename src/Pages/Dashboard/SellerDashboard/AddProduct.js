@@ -49,7 +49,7 @@ const AddProduct = () => {
                     condition:data.condition,
 
                 }
-                fetch('https://mo-buy-and-sell-server.vercel.app/products',{
+                fetch('https://mo-buy-and-sell-server-ahmad-shibbir.vercel.app/products',{
                     method:'POST',
                     headers:{
                         'content-type': 'application/json',

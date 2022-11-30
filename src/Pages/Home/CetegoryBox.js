@@ -7,7 +7,7 @@ const CetegoryBox = () => {
   const { data: category = [] } = useQuery({
     queryKey: ["category"],
     queryFn: async () => {
-      const res = await fetch("https://mo-buy-and-sell-server.vercel.app/category");
+      const res = await fetch("https://mo-buy-and-sell-server-ahmad-shibbir.vercel.app/category");
       const data = await res.json();
       return data;
     },

@@ -42,7 +42,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'/products/:id',
-                loader:({params})=>fetch(`https://mo-buy-and-sell-server.vercel.app/category/${params.id}`),
+                loader:({params})=>fetch(`https://mo-buy-and-sell-server-ahmad-shibbir.vercel.app/category/${params.id}`),
                 element:<Products></Products>
             }
 

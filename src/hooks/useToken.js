@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useToken = (email) => {
     const [token, setToken]= useState('');
     useEffect(()=>{
-        fetch(`https://mo-buy-and-sell-server.vercel.app/jwt?email=${email}`)
+        fetch(`https://mo-buy-and-sell-server-ahmad-shibbir.vercel.app/jwt?email=${email}`)
         .then((res) => res.json())
         .then((d) => {
           if (d.accessToken) {

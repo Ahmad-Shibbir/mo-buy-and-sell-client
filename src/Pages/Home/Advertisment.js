@@ -9,7 +9,7 @@ const Advertisment = () => {
     const { data: advertise = [] } = useQuery({
         queryKey: ["advertise"],
         queryFn: async () => {
-          const res = await fetch("https://mo-buy-and-sell-server.vercel.app/advertise");
+          const res = await fetch("https://mo-buy-and-sell-server-ahmad-shibbir.vercel.app/advertise");
           const data = await res.json();
           return data;
         },

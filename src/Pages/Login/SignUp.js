@@ -24,22 +24,24 @@ const SignUp = () => {
   }
   const handleSignup = (data) => {
     setSignUpError('');
-    console.log(data);
+    // console.log(data);
     createUser(data.email, data.password)
     .then(d => {
         const user = d.user;
+        console.log(data.email);
         console.log(user);
         toast('User Created Successfully!')
         const userInfo ={
             displayName: data.name
+            
         }
         updateUser(userInfo)
         .then(()=>{
           saveUser(data.name, data.email, data.userType)
         })
         .catch(e=>{
-            console.log(e)
-            // setSignUpError(e.message);
+            console.log(e.message)
+            setSignUpError(e.message);
         })
     })
     .catch(e => {
@@ -51,7 +53,8 @@ const SignUp = () => {
     
     const saveUser = (name, email, user_type)=>{
       const user = {name, email,user_type};
-      fetch('https://mo-buy-and-sell-server.vercel.app/users',{
+      console.log(user);
+      fetch('https://mo-buy-and-sell-server-ahmad-shibbir.vercel.app/users',{
         method:'POST',
         headers:{
           'content-type': 'application/json'
@@ -62,21 +65,12 @@ const SignUp = () => {
       .then(d=>{
         console.log(d);
         setCreatedUserEmail(email)
+        navigate('/');
       });
 
   };
 
-// const getUserToken = email =>{
-//     fetch(`https://mo-buy-and-sell.web.app/jwt?email=${email}`)
-//     .then(res=>res.json())
-//     .then(d=>{
-//       if(d.accessToken){
-//         localStorage.setItem('accessToken', d.accessToken);
-//         // Navigate('/');
 
-//       }
-//     })
-// }
 
   return (
     <div className="h-[800px] flex justify-center items-center ">
@@ -149,7 +143,7 @@ const SignUp = () => {
                 <option value="">Do you want to buy or sell</option>
                 <option value="buyer">Buyer</option>
                 <option value="seller">Seller</option>                
-                <option value="admin">Admin</option>                
+                
               </select>
               {errors.userType && (
                 <p className="text-accent" role="alert">
